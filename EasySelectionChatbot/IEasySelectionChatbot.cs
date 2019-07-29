@@ -9,7 +9,7 @@ namespace EasySelectionChatbot
     public interface IEasySelectionChatbot
     {
         void CreateFeatureDictionary();
-        string ReadDatabase();
+        void ReadDatabase();
         void DisplayItems(string Feature, string FeatureValue);
         void ResetItems();
         void AbortApplication();

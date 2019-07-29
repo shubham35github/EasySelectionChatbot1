@@ -12,8 +12,9 @@ namespace EasySelectionChatbot
         {
             IEasySelectionChatbot easySelectionChatbot = new EasySelectionChatbot();
             easySelectionChatbot.CreateFeatureDictionary();
-            easySelectionChatbot.DisplayItems("category", "bedside");
+            //easySelectionChatbot.DisplayItems("category", "bedside");
             //Console.WriteLine("Hello World!");
+            easySelectionChatbot.ReadDatabase();
             Console.ReadKey();
         }
     }
