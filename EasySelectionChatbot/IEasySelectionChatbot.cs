@@ -9,7 +9,6 @@ namespace EasySelectionChatbot
     public interface IEasySelectionChatbot
     {
         void CreateFeatureDictionary();
-        void CreateMonitorsDictionary();
         void ReadDatabase(IEasySelectionChatbot easySelectionChatbot);
         void DisplayItems(string Feature, string FeatureValue);
         void BackPropagation();

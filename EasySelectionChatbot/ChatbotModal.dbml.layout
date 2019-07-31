@@ -2,10 +2,10 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="ChatbotModal">
   <DataContextMoniker Name="/ChatbotModalDataContext" />
   <nestedChildShapes>
-    <classShape Id="05110f1a-cc75-49e9-9cb2-ebc11c13ba77" absoluteBounds="4, 1.375, 2, 4.4631168619791666">
+    <classShape Id="9c79c669-4d2c-4a06-a871-d4c5e4030cd5" absoluteBounds="4.875, 1.625, 2, 4.6554182942708326">
       <DataClassMoniker Name="/ChatbotModalDataContext/ChatbotTable_" />
       <nestedChildShapes>
-        <elementListCompartment Id="93d0266b-e763-467b-b47d-59d925a1c02e" absoluteBounds="4.015, 1.835, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="5d8af480-4a9a-4845-a832-4173051ba80f" absoluteBounds="4.89, 2.085, 1.9700000000000002, 4.095418294270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

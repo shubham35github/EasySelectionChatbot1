@@ -113,6 +113,8 @@ namespace EasySelectionChatbot
 		
 		private string _storage_size;
 		
+		private string _monitors_name;
+		
 		public ChatbotTable_()
 		{
 		}
@@ -417,6 +419,22 @@ namespace EasySelectionChatbot
 				if ((this._storage_size != value))
 				{
 					this._storage_size = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_monitors_name", DbType="NVarChar(255)")]
+		public string monitors_name
+		{
+			get
+			{
+				return this._monitors_name;
+			}
+			set
+			{
+				if ((this._monitors_name != value))
+				{
+					this._monitors_name = value;
 				}
 			}
 		}

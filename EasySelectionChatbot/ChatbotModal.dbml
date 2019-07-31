@@ -21,6 +21,7 @@
       <Column Name="nbp_measurment" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="speed" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="storage_size" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="monitors_name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

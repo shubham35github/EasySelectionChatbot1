@@ -10,44 +10,9 @@ namespace EasySelectionChatbot
 {
     class EasySelectionChatbot:IEasySelectionChatbot
     {
-        Dictionary<int, string> ItemDictionary = new Dictionary<int, string>();
         Dictionary<int, string> FeaturesDictionary = new Dictionary<int, string>();
         Dictionary<int, string> AnswerDictionary = new Dictionary<int, string>();
 
-        void IEasySelectionChatbot.CreateMonitorsDictionary()
-        {
-            ItemDictionary.Add(1, "Intellivue MP5T");
-            ItemDictionary.Add(2, "Intellivue MMS X2");
-            ItemDictionary.Add(3, "Intellivue guardian solution");
-            ItemDictionary.Add(4, "Intellivue MM5 SC");
-            ItemDictionary.Add(5, "Intellivue MMX40");
-            ItemDictionary.Add(6, "Intellivue MP90");
-            ItemDictionary.Add(7, "Intellivue MX700");
-            ItemDictionary.Add(8, "Intellivue MP5");
-            ItemDictionary.Add(9, "Intellivue MX550");
-            ItemDictionary.Add(10, "Intellivue MP2");
-            ItemDictionary.Add(11, "Intellivue MX400");
-            ItemDictionary.Add(12, "Intellivue MX800");
-            ItemDictionary.Add(13, "Intellivue MX450");
-            ItemDictionary.Add(14, "Intellivue MX500");
-            ItemDictionary.Add(15, "Avalon CL");
-            ItemDictionary.Add(16, "Avalon FM20");
-            ItemDictionary.Add(17, "Avalon FM40");
-            ItemDictionary.Add(18, "Avalon FM50");
-            ItemDictionary.Add(19, "Avalon FM30");
-            ItemDictionary.Add(20, "Efficia CMS200");
-            ItemDictionary.Add(21, "IntelliSpace Alarm Reporting");
-            ItemDictionary.Add(22, "IntelliVue Information Center iX");
-            ItemDictionary.Add(23, "IntelliSpace Event Management");
-            ItemDictionary.Add(24, "Suresight VM6");
-            ItemDictionary.Add(25, "Suresight VM4");
-            ItemDictionary.Add(26, "Suresight VM8");
-            ItemDictionary.Add(27, "Suresight VSi");
-            ItemDictionary.Add(28, "Suresight VS2+");
-            ItemDictionary.Add(29, "Suresight VS4");
-            ItemDictionary.Add(30, "Suresight VS3");
-            ItemDictionary.Add(31, "Suresight VM1");
-        }
 
         //Creating the Feature Dictionary from DB
         void IEasySelectionChatbot.CreateFeatureDictionary()
@@ -61,7 +26,6 @@ namespace EasySelectionChatbot
                     FeaturesDictionary.Add(i, c.ToString());
                     i = i + 1;
                 }
-
             }
         }
 
@@ -73,7 +37,7 @@ namespace EasySelectionChatbot
                 int feature_no = 1;
 
                 //For Each Feature from 1st to Last Question
-                for (int i = 1; i < FeaturesDictionary.Count; i++)
+                for (int i = 1; i < FeaturesDictionary.Count-1; i++)
                 {
                     string input="";
                     var list = new List<string>();
@@ -228,23 +192,23 @@ namespace EasySelectionChatbot
        
             using (ChatbotModalDataContext dbcontext = new ChatbotModalDataContext())
             {
-                string pk = "monitors_no";
+                string pk = "monitors_name";
                 if (Feature.Equals("FirstFeature") && FeatureValue.Equals("FirstValue"))
                 {
                     var linquery = dbcontext.ChatbotTable_s.Select(pk);
-                    Console.WriteLine("The Monitors which meet your Requirnment are : ");
+                    Console.WriteLine("The Items which meet your Requirnment are : ");
                     foreach (var c in linquery)
                     {
-                        Console.WriteLine(ItemDictionary[Convert.ToInt32(c.ToString())]);
+                        Console.WriteLine(c.ToString());
                     }
                 }
                 else
                 {
                     var linquery = dbcontext.ChatbotTable_s.Where(Feature + "=\"" + FeatureValue + "\"").Select(pk);
-                    Console.WriteLine("The Monitors which meet your Requirnment are : ");
+                    Console.WriteLine("The Items which meet your Requirnment are : ");
                     foreach (var c in linquery)
                     {
-                        Console.WriteLine(ItemDictionary[Convert.ToInt32(c.ToString())]);
+                        Console.WriteLine(c.ToString());
 
                     }
                 }

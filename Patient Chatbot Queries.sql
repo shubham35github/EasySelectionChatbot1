@@ -41,3 +41,8 @@ Update ChatbotTable$ SET nbp_measurment=NULL where nbp_measurment='null';
 Update ChatbotTable$ SET storage_size=NULL where storage_size='null';
 Update ChatbotTable$ SET speed=NULL where speed='null';
 Update ChatbotTable$ SET feature_4=NULL where feature_4='null';
+
+
+/*Adding new column Monitor name*/
+alter table ChatbotTable$
+add monitors_name nvarchar(255)
