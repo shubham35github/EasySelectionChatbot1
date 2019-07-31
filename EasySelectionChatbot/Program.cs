@@ -11,10 +11,11 @@ namespace EasySelectionChatbot
         static void Main(string[] args)
         {
             IEasySelectionChatbot easySelectionChatbot = new EasySelectionChatbot();
+            easySelectionChatbot.CreateMonitorsDictionary();
             easySelectionChatbot.CreateFeatureDictionary();
-            //easySelectionChatbot.DisplayItems("category", "bedside");
+            easySelectionChatbot.ReadDatabase(easySelectionChatbot);
+           // easySelectionChatbot.DisplayItems("category", "bedside");
             //Console.WriteLine("Hello World!");
-            easySelectionChatbot.ReadDatabase();
             Console.ReadKey();
         }
     }

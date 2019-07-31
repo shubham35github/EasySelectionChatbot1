@@ -52,6 +52,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ChatbotModal.dbml</DependentUpon>
     </Compile>
+    <Compile Include="DefaultFeatures.cs" />
     <Compile Include="EasySelectionChatbot.cs" />
     <Compile Include="IEasySelectionChatbot.cs" />
     <Compile Include="Program.cs" />
