@@ -10,13 +10,10 @@ namespace EasySelectionChatbot
 {
     class EasySelectionChatbot:IEasySelectionChatbot
     {
-        Dictionary<int, string> FeaturesDictionary = new Dictionary<int, string>();
-        Dictionary<int, string> AnswerDictionary = new Dictionary<int, string>();
-
-
-        //Creating the Feature Dictionary from DB
-        void IEasySelectionChatbot.CreateFeatureDictionary()
+        //Reading the column from DB and mapping to Feature Dictionary 
+        Dictionary<int,string> IEasySelectionChatbot.ReadDatabaseColumns()
         {
+            Dictionary<int, string> FeaturesDictionary = new Dictionary<int, string>();
             using (ChatbotModalDataContext dbcontext = new ChatbotModalDataContext())
             {
                 var columnnames = from t in typeof(ChatbotTable_).GetProperties() select t.Name;
@@ -27,11 +24,14 @@ namespace EasySelectionChatbot
                     i = i + 1;
                 }
             }
+            return FeaturesDictionary;
         }
 
         // Filtering the Question from Feature dictionary and Storing the Option in Answer Dictionary using DB
-        void IEasySelectionChatbot.ReadDatabase(IEasySelectionChatbot easySelectionChatbot)
+        Dictionary<int, string> IEasySelectionChatbot.ProcessChatbotFeatures(IEasySelectionChatbot easySelectionChatbot, Dictionary<int,string> FeaturesDictionary)
         {
+            Dictionary<int, string> AnswerDictionary = new Dictionary<int, string>();
+            List<string> SelectedItems;
             using (ChatbotModalDataContext dbcontext = new ChatbotModalDataContext())
             {
                 int feature_no = 1;
@@ -86,7 +86,8 @@ namespace EasySelectionChatbot
                             //Display the Selected Items
                             if (option_choosen == list.Count() + 1)
                             {
-                                easySelectionChatbot.DisplayItems("FirstFeature", "FirstValue");
+                                SelectedItems = easySelectionChatbot.SelectItems("FirstFeature", "FirstValue");
+                                easySelectionChatbot.DisplayItems(SelectedItems);
                                 i = i - 1;
                             }
 
@@ -102,7 +103,7 @@ namespace EasySelectionChatbot
                             else if(option_choosen == list.Count() + 3)
                             {
                                 Console.WriteLine("!!!!! Thank you for Interaction !!!!!\n !!!!! VISIT AGAIN !!!!");
-                                return;
+                                return null;
                             }
 
                             //Storing the option for next question
@@ -153,7 +154,9 @@ namespace EasySelectionChatbot
                             //Display the Selected Items
                             if (option_choosen == list.Count() + 1)
                             {
-                                easySelectionChatbot.DisplayItems(FeaturesDictionary[feature_no], AnswerDictionary[feature_no]);
+                                SelectedItems = easySelectionChatbot.SelectItems(FeaturesDictionary[feature_no], AnswerDictionary[feature_no]);
+                                easySelectionChatbot.DisplayItems(SelectedItems);
+                                
                                 i = i - 1;
                             }
 
@@ -168,8 +171,8 @@ namespace EasySelectionChatbot
                             //Aborting the Application
                             else if (option_choosen == list.Count() + 3)
                             {
-                                Console.WriteLine("!!!!! Thank you for Interaction !!!!!\n !!!!! VISIT AGAIN !!!!");
-                                return;
+                                Console.WriteLine("!!!!! Thank you for Interaction !!!!!\n      !!!!! VISIT AGAIN !!!!");
+                                return null;
                             }
 
                             //Storing the option for next question
@@ -181,40 +184,50 @@ namespace EasySelectionChatbot
                         }
                     }
                 }
-                easySelectionChatbot.DisplayItems(FeaturesDictionary[feature_no], AnswerDictionary[feature_no]);
+                SelectedItems = easySelectionChatbot.SelectItems(FeaturesDictionary[feature_no], AnswerDictionary[feature_no]);
+                easySelectionChatbot.DisplayItems(SelectedItems);
+                return AnswerDictionary;
             }
         }
 
-        //Displaying the Selected Monitors
-        void IEasySelectionChatbot.DisplayItems(string Feature, string FeatureValue)
+        //Return the Selected Monitors
+        List<string> IEasySelectionChatbot.SelectItems(string Feature, string FeatureValue)
         {
-            
-       
             using (ChatbotModalDataContext dbcontext = new ChatbotModalDataContext())
             {
-                string pk = "monitors_name";
+                List<string> list = new List<string>();
                 if (Feature.Equals("FirstFeature") && FeatureValue.Equals("FirstValue"))
                 {
-                    var linquery = dbcontext.ChatbotTable_s.Select(pk);
+                    var SelectedMonitors = dbcontext.ChatbotTable_s.Select("monitors_name");
                     Console.WriteLine("The Items which meet your Requirnment are : ");
-                    foreach (var c in linquery)
+                    foreach (var Monitors in SelectedMonitors)
                     {
-                        Console.WriteLine(c.ToString());
+                        list.Add(Monitors.ToString());
                     }
                 }
                 else
                 {
-                    var linquery = dbcontext.ChatbotTable_s.Where(Feature + "=\"" + FeatureValue + "\"").Select(pk);
+                    var SelectedMonitors = dbcontext.ChatbotTable_s.Where(Feature + "=\"" + FeatureValue + "\"").Select("monitors_name");
                     Console.WriteLine("The Items which meet your Requirnment are : ");
-                    foreach (var c in linquery)
+                    foreach (var Monitors in SelectedMonitors)
                     {
-                        Console.WriteLine(c.ToString());
-
+                        list.Add(Monitors.ToString());
                     }
                 }
-                
+                return list;
             }
         }
+
+        //Display the selected Monitors
+        void IEasySelectionChatbot.DisplayItems(List<string> SelectedItems)
+        {
+            foreach (var Monitors in SelectedItems)
+            {
+                Console.WriteLine(Monitors);
+            }
+        }
+
+
         void IEasySelectionChatbot.BackPropagation()
         {
             throw new NotImplementedException();
