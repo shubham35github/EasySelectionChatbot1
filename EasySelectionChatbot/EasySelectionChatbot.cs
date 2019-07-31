@@ -37,7 +37,7 @@ namespace EasySelectionChatbot
                 int feature_no = 1;
 
                 //For Each Feature from 1st to Last Question
-                for (int i = 1; i < FeaturesDictionary.Count-1; i++)
+                for (int i = 1; i < FeaturesDictionary.Count()-1; i++)
                 {
                     string input="";
                     var list = new List<string>();
@@ -134,7 +134,7 @@ namespace EasySelectionChatbot
                                 Console.Write("{0}: ", ++index);
                                 Console.WriteLine(option);
                             }
-                            Console.Write("\n\n!!!! Or else Choose Default options!!!! \n{0}: {1}\n{2}: {3}\n{4}: {5}\n", ++index, DefaultFeatures.Display_Items, ++index, DefaultFeatures.Start_Again, ++index, DefaultFeatures.Exit_the_Application);
+                            Console.Write("\n\n!!!! Or else Choose Default options!!!! \n{0}: {1}\n{2}: {3}\n{4}: {5}\n{6}: {7}\n", ++index, DefaultFeatures.Display_Items, ++index, DefaultFeatures.Start_Again,++index,DefaultFeatures.Back, ++index, DefaultFeatures.Exit_the_Application);
                             bool valid = false;
                             int option_choosen = 0;
                             while (valid == false)
@@ -168,8 +168,17 @@ namespace EasySelectionChatbot
                                 feature_no = 1;
                             }
 
+                            //Back to the previous question
+                            else if(option_choosen==list.Count()+3)
+                            {
+                                AnswerDictionary.Remove(feature_no);
+                                i = feature_no-1;
+                                if(i!=0)
+                                    feature_no = AnswerDictionary.Keys.Max();
+                            }
+
                             //Aborting the Application
-                            else if (option_choosen == list.Count() + 3)
+                            else if (option_choosen == list.Count() + 4)
                             {
                                 Console.WriteLine("!!!!! Thank you for Interaction !!!!!\n      !!!!! VISIT AGAIN !!!!");
                                 return null;
@@ -180,6 +189,7 @@ namespace EasySelectionChatbot
                             {
                                 AnswerDictionary.Add(i, list[option_choosen - 1]);
                                 feature_no = i;
+
                             }
                         }
                     }
