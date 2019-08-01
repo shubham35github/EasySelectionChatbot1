@@ -49,16 +49,3 @@ echo Unit Tests Execution Ended...
 echo.
 echo.
 pause
-
-
-
-
-
-
-
-
-
-
-rem /verbosity:quiet /ds /nologo /noconlog  /Tests:"Test" /clp:PerformanceSummary;Summary /clp:ShowTimestamp
-
-
