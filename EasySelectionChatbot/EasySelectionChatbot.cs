@@ -190,8 +190,8 @@ namespace EasySelectionChatbot
                 }
                 SelectedItems = easySelectionChatbot.SelectItems(FeaturesDictionary[feature_no], AnswerDictionary[feature_no]);
                 
-DisplayItems(SelectedItems);
-                Console.WriteLine("---------------------------------!!!!! Thank you for Interaction !!!!!---------------------------------\n      ---------------------------------!!!!!VISIT AGAIN !!!!---------------------------------");
+                DisplayItems(SelectedItems);
+                Console.WriteLine("\n---------------------------------!!!!! Thank you for your Interaction !!!!!---------------------------------\n      ---------------------------------------!!!!! VISIT AGAIN !!!!!---------------------------------");
                 return AnswerDictionary;
             }
         }
@@ -230,6 +230,7 @@ DisplayItems(SelectedItems);
         //Display the selected Monitors
         void DisplayItems(List<string> SelectedItems)
         {
+            Console.WriteLine();
             Console.WriteLine("-------------------------------------------------------------------------------");
             Console.WriteLine("The Items which meet your Requirnment are : ");
             foreach (var Monitors in SelectedItems)
@@ -237,6 +238,7 @@ DisplayItems(SelectedItems);
                 Console.WriteLine(Monitors);
             }
             Console.WriteLine("-------------------------------------------------------------------------------");
+            Console.WriteLine();
 
         }
 
@@ -261,7 +263,7 @@ DisplayItems(SelectedItems);
         //Exit the Application
         void ExitApplication()
         {
-            Console.WriteLine("---------------------------------!!!!! Thank you for Interaction !!!!!---------------------------------\n       ---------------------------------!!!!! VISIT AGAIN !!!!---------------------------------");
+            Console.WriteLine("\n---------------------------------!!!!! Thank you for your Interaction !!!!!---------------------------------\n       ---------------------------------------!!!!! VISIT AGAIN !!!!!---------------------------------");
             Console.ReadKey();
             System.Environment.Exit(1);
         }
