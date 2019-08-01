@@ -10,10 +10,11 @@ namespace EasySelectionChatbot
     {
         static void Main(string[] args)
         {
-            IEasySelectionChatbot easySelectionChatbot = new EasySelectionChatbot();
-            Dictionary<int,string> FeaturesDictionary= easySelectionChatbot.ReadDatabaseColumns();
-            easySelectionChatbot.ProcessChatbotFeatures(easySelectionChatbot, FeaturesDictionary);
-            Console.ReadKey();
+            IEasySelectionChatbot easySelectionChatbot = new EasySelectionChatBot();
+            IDataInput dataInput = new EasySelectionChatBot();
+            Console.WriteLine("---------------------------------WELCOME TO THE INTELLIGENT CHATBOT---------------------------------\n");
+            Dictionary<int,string> FeaturesDictionary= easySelectionChatbot.ReadProductAttributes();
+            easySelectionChatbot.ProcessChatbotFeatures(easySelectionChatbot,dataInput,FeaturesDictionary);
         }
     }
 }

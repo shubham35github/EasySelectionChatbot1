@@ -8,10 +8,14 @@ using System.IO;
 
 namespace EasySelectionChatbot
 {
-    class EasySelectionChatbot:IEasySelectionChatbot
+    public class EasySelectionChatBot:IEasySelectionChatbot,IDataInput
     {
+        //Dictionary for storing the Answer of with questions_no
+        Dictionary<int, string> AnswerDictionary = new Dictionary<int, string>();
+        int feature_no = 1;
+
         //Reading the column from DB and mapping to Feature Dictionary 
-        Dictionary<int,string> IEasySelectionChatbot.ReadDatabaseColumns()
+        Dictionary<int,string> IEasySelectionChatbot.ReadProductAttributes()
         {
             Dictionary<int, string> FeaturesDictionary = new Dictionary<int, string>();
             using (ChatbotModalDataContext dbcontext = new ChatbotModalDataContext())
@@ -28,14 +32,11 @@ namespace EasySelectionChatbot
         }
 
         // Filtering the Question from Feature dictionary and Storing the Option in Answer Dictionary using DB
-        Dictionary<int, string> IEasySelectionChatbot.ProcessChatbotFeatures(IEasySelectionChatbot easySelectionChatbot, Dictionary<int,string> FeaturesDictionary)
+        Dictionary<int, string> IEasySelectionChatbot.ProcessChatbotFeatures(IEasySelectionChatbot easySelectionChatbot,IDataInput dataInput, Dictionary<int,string> FeaturesDictionary)
         {
-            Dictionary<int, string> AnswerDictionary = new Dictionary<int, string>();
             List<string> SelectedItems;
             using (ChatbotModalDataContext dbcontext = new ChatbotModalDataContext())
             {
-                int feature_no = 1;
-
                 //For Each Feature from 1st to Last Question
                 for (int i = 1; i < FeaturesDictionary.Count()-1; i++)
                 {
@@ -54,11 +55,11 @@ namespace EasySelectionChatbot
                             }
                             if (list.Contains("true") || list.Contains("false"))
                             {
-                                Console.WriteLine("\nDo you want {0} :", FeaturesDictionary[i]);
+                                Console.WriteLine("Do you want '{0}' ?", FeaturesDictionary[i].ToUpper());
                             }
                             else
                             {
-                                Console.WriteLine("\nChoose the following {0} options:", FeaturesDictionary[i]);
+                                Console.WriteLine("Choose the following '{0}' options:", FeaturesDictionary[i].ToUpper());
                             }
                             int index = 0;
                             foreach (var option in Options)
@@ -71,39 +72,37 @@ namespace EasySelectionChatbot
                             int option_choosen = 0;
                             while(valid==false)
                             {
-                                input = Console.ReadLine();
+                                input = dataInput.getInput();
                                 if (int.TryParse(input, out option_choosen))
                                 {
                                     if(option_choosen>0 && option_choosen<=index)
                                         valid = true;
                                     else
-                                        Console.WriteLine("!!!! Choose the Valid Option !!!!");
+                                        Console.WriteLine("!!!! Choose the Valid Option !!!!\n");
                                 }
                                 else
-                                    Console.WriteLine("!!!! Choose the Valid Option !!!!");
+                                    Console.WriteLine("!!!! Choose the Valid Option !!!!\n");
                             }
 
                             //Display the Selected Items
                             if (option_choosen == list.Count() + 1)
                             {
                                 SelectedItems = easySelectionChatbot.SelectItems("FirstFeature", "FirstValue");
-                                easySelectionChatbot.DisplayItems(SelectedItems);
+                                DisplayItems(SelectedItems);
                                 i = i - 1;
                             }
 
                             //Start Again from the Home
                             else if(option_choosen==list.Count() + 2)
                             {
-                                i = 0;
-                                AnswerDictionary.Clear();
-                                feature_no = 1;
+                                i = StartAgain();
                             }
 
                             //Aborting the Application
                             else if(option_choosen == list.Count() + 3)
                             {
-                                Console.WriteLine("!!!!! Thank you for Interaction !!!!!\n !!!!! VISIT AGAIN !!!!");
-                                return null;
+                                ExitApplication();
+                                //return null;
                             }
 
                             //Storing the option for next question
@@ -122,11 +121,11 @@ namespace EasySelectionChatbot
                             }
                             if (list.Contains("true") || list.Contains("false"))
                             {
-                                Console.WriteLine("\nDo you want {0} :", FeaturesDictionary[i]);
+                                Console.WriteLine("\nDo you want '{0}' ?", FeaturesDictionary[i].ToUpper());
                             }
                             else
                             {
-                                Console.WriteLine("\nChoose the following {0} options:", FeaturesDictionary[i]);
+                                Console.WriteLine("\nChoose the following '{0}' options:", FeaturesDictionary[i].ToUpper());
                             }
                             int index = 0;
                             foreach (var option in Options)
@@ -139,49 +138,44 @@ namespace EasySelectionChatbot
                             int option_choosen = 0;
                             while (valid == false)
                             {
-                                input = Console.ReadLine();
+                                input = dataInput.getInput();
+
                                 if (int.TryParse(input, out option_choosen))
                                 {
                                     if (option_choosen > 0 && option_choosen <= index)
                                         valid = true;
                                     else
-                                        Console.WriteLine("!!!! Choose the Valid Option !!!!");
+                                        Console.WriteLine("!!!! Choose the Valid Option !!!!\n");
                                 }
                                 else
-                                    Console.WriteLine("!!!! Choose the Valid Option !!!!");
+                                    Console.WriteLine("!!!! Choose the Valid Option !!!!\n");
                             }
 
                             //Display the Selected Items
                             if (option_choosen == list.Count() + 1)
                             {
                                 SelectedItems = easySelectionChatbot.SelectItems(FeaturesDictionary[feature_no], AnswerDictionary[feature_no]);
-                                easySelectionChatbot.DisplayItems(SelectedItems);
-                                
+                                DisplayItems(SelectedItems);
                                 i = i - 1;
                             }
 
                             //Start Again from the Home
                             else if (option_choosen == list.Count()+2)
                             {
-                                i = 0;
-                                AnswerDictionary.Clear();
-                                feature_no = 1;
+                                i=StartAgain();
                             }
 
                             //Back to the previous question
                             else if(option_choosen==list.Count()+3)
                             {
-                                AnswerDictionary.Remove(feature_no);
-                                i = feature_no-1;
-                                if(i!=0)
-                                    feature_no = AnswerDictionary.Keys.Max();
+                                i=BackPropagation(feature_no);
                             }
 
                             //Aborting the Application
                             else if (option_choosen == list.Count() + 4)
                             {
-                                Console.WriteLine("!!!!! Thank you for Interaction !!!!!\n      !!!!! VISIT AGAIN !!!!");
-                                return null;
+                                ExitApplication();
+                               // return null;
                             }
 
                             //Storing the option for next question
@@ -195,7 +189,9 @@ namespace EasySelectionChatbot
                     }
                 }
                 SelectedItems = easySelectionChatbot.SelectItems(FeaturesDictionary[feature_no], AnswerDictionary[feature_no]);
-                easySelectionChatbot.DisplayItems(SelectedItems);
+                
+DisplayItems(SelectedItems);
+                Console.WriteLine("---------------------------------!!!!! Thank you for Interaction !!!!!---------------------------------\n      ---------------------------------!!!!!VISIT AGAIN !!!!---------------------------------");
                 return AnswerDictionary;
             }
         }
@@ -203,44 +199,76 @@ namespace EasySelectionChatbot
         //Return the Selected Monitors
         List<string> IEasySelectionChatbot.SelectItems(string Feature, string FeatureValue)
         {
-            using (ChatbotModalDataContext dbcontext = new ChatbotModalDataContext())
+            List<string> Selectedlist = new List<string>();
+            if (!Feature.Equals(String.Empty) || !FeatureValue.Equals(String.Empty))
             {
-                List<string> list = new List<string>();
-                if (Feature.Equals("FirstFeature") && FeatureValue.Equals("FirstValue"))
+                using (ChatbotModalDataContext dbcontext = new ChatbotModalDataContext())
                 {
-                    var SelectedMonitors = dbcontext.ChatbotTable_s.Select("monitors_name");
-                    Console.WriteLine("The Items which meet your Requirnment are : ");
-                    foreach (var Monitors in SelectedMonitors)
+                    if (Feature.Equals("FirstFeature") && FeatureValue.Equals("FirstValue"))
                     {
-                        list.Add(Monitors.ToString());
+                        var Selectedtems = dbcontext.ChatbotTable_s.Select("monitors_name");
+                        foreach (var Item in Selectedtems)
+                        {
+                            Selectedlist.Add(Item.ToString());
+                        }
+                    }
+                    else
+                    {
+                        var Selectedtems = dbcontext.ChatbotTable_s.Where(Feature + "=\"" + FeatureValue + "\"").Select("monitors_name");
+                        foreach (var Item in Selectedtems)
+                        {
+                            Selectedlist.Add(Item.ToString());
+                        }
                     }
                 }
-                else
-                {
-                    var SelectedMonitors = dbcontext.ChatbotTable_s.Where(Feature + "=\"" + FeatureValue + "\"").Select("monitors_name");
-                    Console.WriteLine("The Items which meet your Requirnment are : ");
-                    foreach (var Monitors in SelectedMonitors)
-                    {
-                        list.Add(Monitors.ToString());
-                    }
-                }
-                return list;
             }
+            else
+                throw new Exception("String Empty");
+            return Selectedlist;
         }
 
         //Display the selected Monitors
-        void IEasySelectionChatbot.DisplayItems(List<string> SelectedItems)
+        void DisplayItems(List<string> SelectedItems)
         {
+            Console.WriteLine("-------------------------------------------------------------------------------");
+            Console.WriteLine("The Items which meet your Requirnment are : ");
             foreach (var Monitors in SelectedItems)
             {
                 Console.WriteLine(Monitors);
             }
+            Console.WriteLine("-------------------------------------------------------------------------------");
+
         }
 
-
-        void IEasySelectionChatbot.BackPropagation()
+        //Reverse to the previous Question
+        int BackPropagation(int index)
         {
-            throw new NotImplementedException();
+            AnswerDictionary.Remove(feature_no);
+            int i = index - 1;
+            if (i != 0)
+                feature_no = AnswerDictionary.Keys.Max();
+            return i;
+        }
+
+        //Back to home
+        int StartAgain()
+        {
+            AnswerDictionary.Clear();
+            feature_no = 1;
+            return 0;
+        }
+
+        //Exit the Application
+        void ExitApplication()
+        {
+            Console.WriteLine("---------------------------------!!!!! Thank you for Interaction !!!!!---------------------------------\n       ---------------------------------!!!!! VISIT AGAIN !!!!---------------------------------");
+            Console.ReadKey();
+            System.Environment.Exit(1);
+        }
+
+        public string getInput()
+        {
+            return Console.ReadLine();
         }
     }
 }

@@ -8,10 +8,8 @@ namespace EasySelectionChatbot
 {
     public interface IEasySelectionChatbot
     {
-        Dictionary<int ,string> ReadDatabaseColumns();
-        Dictionary<int, string> ProcessChatbotFeatures(IEasySelectionChatbot easySelectionChatbot,Dictionary<int,string> FeaturesDictionary);
+        Dictionary<int ,string> ReadProductAttributes();
+        Dictionary<int, string> ProcessChatbotFeatures(IEasySelectionChatbot easySelectionChatbot, IDataInput dataInput,Dictionary<int,string> FeaturesDicionary);
         List<string> SelectItems(string Feature, string FeatureValue);
-        void DisplayItems(List<string> SelectedItems);
-        void BackPropagation();
     }
 }

@@ -54,6 +54,7 @@
     </Compile>
     <Compile Include="DefaultFeatures.cs" />
     <Compile Include="EasySelectionChatbot.cs" />
+    <Compile Include="IDataInput.cs" />
     <Compile Include="IEasySelectionChatbot.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
