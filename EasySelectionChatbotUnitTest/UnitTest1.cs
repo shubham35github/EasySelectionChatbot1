@@ -7,6 +7,8 @@ namespace EasySelectionChatbotUnitTest
     [TestClass]
     public class UnitTest1
     {
+
+        //Test case for Reading the DB and storing it into Dictionary 
         [TestMethod]
         public void ReadProductAttributesTest1()
         {
