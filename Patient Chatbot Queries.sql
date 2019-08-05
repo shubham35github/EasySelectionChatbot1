@@ -2,9 +2,9 @@
 
 Update ChatbotTable$ SET touchscreen=NULL where touchscreen='null';
 Update ChatbotTable$ SET category=NULL where category='null';
-Update ChatbotTable$ SET portablity_true=NULL where portablity_true='null';
-Update ChatbotTable$ SET feature_true=NULL where feature_true='null';
-Update ChatbotTable$ SET size_true=NULL where size_true='null';
+Update ChatbotTable$ SET portablity_1=NULL where portablity_1='null';
+Update ChatbotTable$ SET feature_1=NULL where feature_1='null';
+Update ChatbotTable$ SET size_1=NULL where size_1='null';
 Update ChatbotTable$ SET feature_2=NULL where feature_2='null';
 Update ChatbotTable$ SET touchscreen=NULL where touchscreen='null';
 Update ChatbotTable$ SET feature_3=NULL where feature_3='null';

@@ -15,7 +15,7 @@ namespace EasySelectionChatbot
         int feature_no = 1;
 
         //Reading the column from DB and mapping to Feature Dictionary 
-        Dictionary<int,string> IEasySelectionChatbot.ReadProductAttributes()
+        public Dictionary<int,string> ReadProductAttributes()
         {
             Dictionary<int, string> FeaturesDictionary = new Dictionary<int, string>();
             using (ChatbotModalDataContext dbcontext = new ChatbotModalDataContext())
@@ -32,7 +32,7 @@ namespace EasySelectionChatbot
         }
 
         // Filtering the Question from Feature dictionary and Storing the Option in Answer Dictionary using DB
-        Dictionary<int, string> IEasySelectionChatbot.ProcessChatbotFeatures(IEasySelectionChatbot easySelectionChatbot,IDataInput dataInput, Dictionary<int,string> FeaturesDictionary)
+        public Dictionary<int, string> ProcessChatbotFeatures(IDataInput dataInput, Dictionary<int,string> FeaturesDictionary)
         {
             List<string> SelectedItems;
             using (ChatbotModalDataContext dbcontext = new ChatbotModalDataContext())
@@ -59,7 +59,7 @@ namespace EasySelectionChatbot
                             }
                             else
                             {
-                                Console.WriteLine("Choose the following '{0}' options:", FeaturesDictionary[i].ToUpper());
+                                Console.WriteLine("Choose from the following '{0}' options:", FeaturesDictionary[i].ToUpper());
                             }
                             int index = 0;
                             foreach (var option in Options)
@@ -67,7 +67,7 @@ namespace EasySelectionChatbot
                                 Console.Write("{0}: ", ++index);
                                 Console.WriteLine(option);
                             }
-                            Console.Write("\n!!!! Or else Choose Default options!!!! \n{0}: {1}\n{2}: {3}\n{4}: {5}\n", ++index,DefaultFeatures.Display_Items,++index,DefaultFeatures.Start_Again ,++index,DefaultFeatures.Exit_the_Application);
+                            Console.Write("{0}: {1}\n{2}: {3}\n{4}: {5}\n", ++index,DefaultFeatures.Display_Filtered_Items.ToString().Replace('_',' '), ++index,DefaultFeatures.Start_Again.ToString().Replace('_', ' '), ++index,DefaultFeatures.Exit_the_Application.ToString().Replace('_', ' '));
                             bool valid = false;
                             int option_choosen = 0;
                             while(valid==false)
@@ -87,7 +87,7 @@ namespace EasySelectionChatbot
                             //Display the Selected Items
                             if (option_choosen == list.Count() + 1)
                             {
-                                SelectedItems = easySelectionChatbot.SelectItems("FirstFeature", "FirstValue");
+                                SelectedItems = SelectItems("FirstFeature", "FirstValue");
                                 DisplayItems(SelectedItems);
                                 i = i - 1;
                             }
@@ -125,7 +125,7 @@ namespace EasySelectionChatbot
                             }
                             else
                             {
-                                Console.WriteLine("\nChoose the following '{0}' options:", FeaturesDictionary[i].ToUpper());
+                                Console.WriteLine("\nChoose from the following '{0}' options:", FeaturesDictionary[i].ToUpper());
                             }
                             int index = 0;
                             foreach (var option in Options)
@@ -133,28 +133,28 @@ namespace EasySelectionChatbot
                                 Console.Write("{0}: ", ++index);
                                 Console.WriteLine(option);
                             }
-                            Console.Write("\n\n!!!! Or else Choose Default options!!!! \n{0}: {1}\n{2}: {3}\n{4}: {5}\n{6}: {7}\n", ++index, DefaultFeatures.Display_Items, ++index, DefaultFeatures.Start_Again,++index,DefaultFeatures.Back, ++index, DefaultFeatures.Exit_the_Application);
+                            Console.Write("{0}: {1}\n{2}: {3}\n{4}: {5}\n{6}: {7}\n", ++index, DefaultFeatures.Display_Filtered_Items.ToString().Replace('_',' '), ++index, DefaultFeatures.Start_Again.ToString().Replace('_', ' '), ++index,DefaultFeatures.Back_To_Previous_Question.ToString().Replace('_', ' '), ++index, DefaultFeatures.Exit_the_Application.ToString().Replace('_', ' '));
                             bool valid = false;
                             int option_choosen = 0;
                             while (valid == false)
                             {
-                                input = dataInput.getInput();
+                                input =dataInput.getInput();
 
                                 if (int.TryParse(input, out option_choosen))
                                 {
                                     if (option_choosen > 0 && option_choosen <= index)
                                         valid = true;
                                     else
-                                        Console.WriteLine("!!!! Choose the Valid Option !!!!\n");
+                                        Console.WriteLine("!!!! Please Choose the Valid Option !!!!\n");
                                 }
                                 else
-                                    Console.WriteLine("!!!! Choose the Valid Option !!!!\n");
+                                    Console.WriteLine("!!!! Please Choose the Valid Option !!!!\n");
                             }
 
                             //Display the Selected Items
                             if (option_choosen == list.Count() + 1)
                             {
-                                SelectedItems = easySelectionChatbot.SelectItems(FeaturesDictionary[feature_no], AnswerDictionary[feature_no]);
+                                SelectedItems = SelectItems(FeaturesDictionary[feature_no], AnswerDictionary[feature_no]);
                                 DisplayItems(SelectedItems);
                                 i = i - 1;
                             }
@@ -188,16 +188,16 @@ namespace EasySelectionChatbot
                         }
                     }
                 }
-                SelectedItems = easySelectionChatbot.SelectItems(FeaturesDictionary[feature_no], AnswerDictionary[feature_no]);
+                SelectedItems = SelectItems(FeaturesDictionary[feature_no], AnswerDictionary[feature_no]);
                 
                 DisplayItems(SelectedItems);
-                Console.WriteLine("\n---------------------------------!!!!! Thank you for your Interaction !!!!!---------------------------------\n      ---------------------------------------!!!!! VISIT AGAIN !!!!!---------------------------------");
+                Console.WriteLine("\n---------------------------------!!!!! Thank you for your Interaction, Hope I was able to assist you here. !!!!!----------\n      ---------------------------------------!!!!! HAVE A NICE DAY VISIT AGAIN !!!!!---------------------------------");
                 return AnswerDictionary;
             }
         }
 
         //Return the Selected Monitors
-        List<string> IEasySelectionChatbot.SelectItems(string Feature, string FeatureValue)
+        public List<string> SelectItems(string Feature, string FeatureValue)
         {
             List<string> Selectedlist = new List<string>();
             if (!Feature.Equals(String.Empty) || !FeatureValue.Equals(String.Empty))
@@ -232,7 +232,7 @@ namespace EasySelectionChatbot
         {
             Console.WriteLine();
             Console.WriteLine("-------------------------------------------------------------------------------");
-            Console.WriteLine("The Items which meet your Requirnment are : ");
+            Console.WriteLine("Here are some Items Suggestions for you : \n");
             foreach (var Monitors in SelectedItems)
             {
                 Console.WriteLine(Monitors);
@@ -263,7 +263,7 @@ namespace EasySelectionChatbot
         //Exit the Application
         void ExitApplication()
         {
-            Console.WriteLine("\n---------------------------------!!!!! Thank you for your Interaction !!!!!---------------------------------\n       ---------------------------------------!!!!! VISIT AGAIN !!!!!---------------------------------");
+            Console.WriteLine("\n---------------------------------!!!!! Thank you for your Interaction, Hope I was able to assist you here. !!!!!---------\n      ---------------------------------------!!!!! HAVE A NICE DAY VISIT AGAIN !!!!!---------------------------------");
             Console.ReadKey();
             System.Environment.Exit(1);
         }

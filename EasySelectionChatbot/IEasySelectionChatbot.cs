@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace EasySelectionChatbot
 {
-    public interface IEasySelectionChatbot
+    interface IEasySelectionChatbot
     {
         Dictionary<int ,string> ReadProductAttributes();
-        Dictionary<int, string> ProcessChatbotFeatures(IEasySelectionChatbot easySelectionChatbot, IDataInput dataInput,Dictionary<int,string> FeaturesDicionary);
+        Dictionary<int, string> ProcessChatbotFeatures(IDataInput dataInput,Dictionary<int,string> FeaturesDicionary);
         List<string> SelectItems(string Feature, string FeatureValue);
     }
 }

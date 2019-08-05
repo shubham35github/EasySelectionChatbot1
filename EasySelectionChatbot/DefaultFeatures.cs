@@ -8,9 +8,9 @@ namespace EasySelectionChatbot
 {
     public enum DefaultFeatures
     {
-        Display_Items,
+        Display_Filtered_Items,
         Start_Again,
-        Back,
+        Back_To_Previous_Question,
         Exit_the_Application
     }
 }

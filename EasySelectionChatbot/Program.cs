@@ -12,9 +12,11 @@ namespace EasySelectionChatbot
         {
             IEasySelectionChatbot easySelectionChatbot = new EasySelectionChatBot();
             IDataInput dataInput = new EasySelectionChatBot();
-            Console.WriteLine("---------------------------------WELCOME TO THE INTELLIGENT CHATBOT---------------------------------\n");
+            Console.WriteLine("------------------------------------------WELCOME TO PHILIPS COMMUNICATION TEAM-------------------------------------------\n");
+            Console.WriteLine("Hi there! I am John and today I'm here to help you. Please choose the Option which best describe your Monitors for me to help you better.\n");
             Dictionary<int,string> FeaturesDictionary= easySelectionChatbot.ReadProductAttributes();
-            easySelectionChatbot.ProcessChatbotFeatures(easySelectionChatbot,dataInput,FeaturesDictionary);
+            easySelectionChatbot.ProcessChatbotFeatures(dataInput,FeaturesDictionary);
+            Console.ReadKey();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace EasySelectionChatbotUnitTest
         [TestMethod]
         public void ReadProductAttributesTest1()
         {
-            IEasySelectionChatbot easySelectionChatbot = new EasySelectionChatBot();
+            EasySelectionChatBot easySelectionChatbot = new EasySelectionChatBot();
             Dictionary<int, string> FeatureDictionaryActual = easySelectionChatbot.ReadProductAttributes();
             Dictionary<int, string> FeatureDictionaryExpected = new Dictionary<int, string>();
             FeatureDictionaryExpected.Add(0, "monitors_no");
@@ -49,9 +49,9 @@ namespace EasySelectionChatbotUnitTest
             Inputs.Add("5");
             Inputs.Add("2");
             Inputs.Add("5");
-            IEasySelectionChatbot easySelectionChatbot = new EasySelectionChatBot();
+            EasySelectionChatBot easySelectionChatbot = new EasySelectionChatBot();
             Dictionary<int, string> FeatureDictionary = easySelectionChatbot.ReadProductAttributes();
-            Dictionary<int, string> AnswerDictionaryActual = easySelectionChatbot.ProcessChatbotFeatures(easySelectionChatbot, new DataInput(Inputs), FeatureDictionary);
+            Dictionary<int, string> AnswerDictionaryActual = easySelectionChatbot.ProcessChatbotFeatures(new DataInput(Inputs), FeatureDictionary);
             Dictionary<int, string> AnswerDictionaryExcpected = new Dictionary<int, string>();
             AnswerDictionaryExcpected.Add(1, "Vitals and ECG");
             AnswerDictionaryExcpected.Add(2, "true");
@@ -71,9 +71,9 @@ namespace EasySelectionChatbotUnitTest
             Inputs.Add("2");
             Inputs.Add("2");
             Inputs.Add("2");
-            IEasySelectionChatbot easySelectionChatbot = new EasySelectionChatBot();
+            EasySelectionChatBot easySelectionChatbot = new EasySelectionChatBot();
             Dictionary<int, string> FeatureDictionary = easySelectionChatbot.ReadProductAttributes();
-            Dictionary<int, string> AnswerDictionaryActual = easySelectionChatbot.ProcessChatbotFeatures(easySelectionChatbot, new DataInput(Inputs), FeatureDictionary);
+            Dictionary<int, string> AnswerDictionaryActual = easySelectionChatbot.ProcessChatbotFeatures(new DataInput(Inputs), FeatureDictionary);
             Dictionary<int, string> AnswerDictionaryExcpected = new Dictionary<int, string>();
             AnswerDictionaryExcpected.Add(1, "Vitals and ECG");
             AnswerDictionaryExcpected.Add(2, "true");
@@ -92,9 +92,9 @@ namespace EasySelectionChatbotUnitTest
             List<string> Inputs = new List<string>();
             Inputs.Add("3");
 
-            IEasySelectionChatbot easySelectionChatbot = new EasySelectionChatBot();
+            EasySelectionChatBot easySelectionChatbot = new EasySelectionChatBot();
             Dictionary<int, string> FeatureDictionary = easySelectionChatbot.ReadProductAttributes();
-            Dictionary<int, string> AnswerDictionaryActual = easySelectionChatbot.ProcessChatbotFeatures(easySelectionChatbot, new DataInput(Inputs), FeatureDictionary);
+            Dictionary<int, string> AnswerDictionaryActual = easySelectionChatbot.ProcessChatbotFeatures(new DataInput(Inputs), FeatureDictionary);
             Dictionary<int, string> AnswerDictionaryExcpected = new Dictionary<int, string>();
             AnswerDictionaryExcpected.Add(1, "Cost Effective Monitoring");
 
@@ -110,9 +110,9 @@ namespace EasySelectionChatbotUnitTest
             Inputs.Add("4");
             Inputs.Add("1");
             Inputs.Add("1");
-            IEasySelectionChatbot easySelectionChatbot = new EasySelectionChatBot();
+            EasySelectionChatBot easySelectionChatbot = new EasySelectionChatBot();
             Dictionary<int, string> FeatureDictionary = easySelectionChatbot.ReadProductAttributes();
-            Dictionary<int, string> AnswerDictionaryActual = easySelectionChatbot.ProcessChatbotFeatures(easySelectionChatbot, new DataInput(Inputs), FeatureDictionary);
+            Dictionary<int, string> AnswerDictionaryActual = easySelectionChatbot.ProcessChatbotFeatures(new DataInput(Inputs), FeatureDictionary);
             Dictionary<int, string> AnswerDictionaryExcpected = new Dictionary<int, string>();
             AnswerDictionaryExcpected.Add(1, "Vitals");
             AnswerDictionaryExcpected.Add(16, "true");
@@ -131,9 +131,9 @@ namespace EasySelectionChatbotUnitTest
             Inputs.Add("8");
             Inputs.Add("1");
             Inputs.Add("1");
-            IEasySelectionChatbot easySelectionChatbot = new EasySelectionChatBot();
+            EasySelectionChatBot easySelectionChatbot = new EasySelectionChatBot();
             Dictionary<int, string> FeatureDictionary = easySelectionChatbot.ReadProductAttributes();
-            Dictionary<int, string> AnswerDictionaryActual = easySelectionChatbot.ProcessChatbotFeatures(easySelectionChatbot, new DataInput(Inputs), FeatureDictionary);
+            Dictionary<int, string> AnswerDictionaryActual = easySelectionChatbot.ProcessChatbotFeatures(new DataInput(Inputs), FeatureDictionary);
             Dictionary<int, string> AnswerDictionaryExcpected = new Dictionary<int, string>();
             AnswerDictionaryExcpected.Add(1, "Vitals and ECG");
             AnswerDictionaryExcpected.Add(2, "false");
@@ -153,9 +153,9 @@ namespace EasySelectionChatbotUnitTest
             Inputs.Add("8");
             Inputs.Add("5");
             Inputs.Add("3");
-            IEasySelectionChatbot easySelectionChatbot = new EasySelectionChatBot();
+            EasySelectionChatBot easySelectionChatbot = new EasySelectionChatBot();
             Dictionary<int, string> FeatureDictionary = easySelectionChatbot.ReadProductAttributes();
-            Dictionary<int, string> AnswerDictionaryActual = easySelectionChatbot.ProcessChatbotFeatures(easySelectionChatbot, new DataInput(Inputs), FeatureDictionary);
+            Dictionary<int, string> AnswerDictionaryActual = easySelectionChatbot.ProcessChatbotFeatures(new DataInput(Inputs), FeatureDictionary);
             Dictionary<int, string> AnswerDictionaryExcpected = new Dictionary<int, string>();
             AnswerDictionaryExcpected.Add(1, "Cost Effective Monitoring");
 
@@ -174,9 +174,9 @@ namespace EasySelectionChatbotUnitTest
             Inputs.Add("2");
             Inputs.Add("7");
             Inputs.Add("3");
-            IEasySelectionChatbot easySelectionChatbot = new EasySelectionChatBot();
+            EasySelectionChatBot easySelectionChatbot = new EasySelectionChatBot();
             Dictionary<int, string> FeatureDictionary = easySelectionChatbot.ReadProductAttributes();
-            Dictionary<int, string> AnswerDictionaryActual = easySelectionChatbot.ProcessChatbotFeatures(easySelectionChatbot, new DataInput(Inputs), FeatureDictionary);
+            Dictionary<int, string> AnswerDictionaryActual = easySelectionChatbot.ProcessChatbotFeatures(new DataInput(Inputs), FeatureDictionary);
             Dictionary<int, string> AnswerDictionaryExcpected = new Dictionary<int, string>();
             AnswerDictionaryExcpected.Add(1, "Cost Effective Monitoring");
 
@@ -192,7 +192,7 @@ namespace EasySelectionChatbotUnitTest
         [TestMethod]
         public void SelectItemsTest1()
         {
-            IEasySelectionChatbot easySelectionChatbot = new EasySelectionChatBot();
+            EasySelectionChatBot easySelectionChatbot = new EasySelectionChatBot();
             var exceptionThrown = false;
             try
             {
@@ -213,7 +213,7 @@ namespace EasySelectionChatbotUnitTest
         [TestMethod]
         public void SelectItemsTest2()
         {
-            IEasySelectionChatbot easySelectionChatbot = new EasySelectionChatBot();
+            EasySelectionChatBot easySelectionChatbot = new EasySelectionChatBot();
             List<string> SelectedlistActual = easySelectionChatbot.SelectItems("FirstFeature", "FirstValue");
             List<string> SelectedlistExcpected = new List<string>();
             SelectedlistExcpected.Add("Intellivue MP5T");
@@ -257,7 +257,7 @@ namespace EasySelectionChatbotUnitTest
         [TestMethod]
         public void SelectItemsTest3()
         {
-            IEasySelectionChatbot easySelectionChatbot = new EasySelectionChatBot();
+            EasySelectionChatBot easySelectionChatbot = new EasySelectionChatBot();
             List<string> SelectedlistActual = easySelectionChatbot.SelectItems("category", "Bedside");
             List<string> SelectedlistExcpected = new List<string>();
             SelectedlistExcpected.Add("Intellivue MMX40");

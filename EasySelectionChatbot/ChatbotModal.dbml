@@ -6,9 +6,9 @@
       <Column Name="measurment" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="touchscreen" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="category" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="portablity_true" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="feature_true" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="size_true" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="portablity_1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="feature_1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="size_1" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="feature_2" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="feature_3" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="portablity_2" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />

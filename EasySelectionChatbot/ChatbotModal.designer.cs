@@ -83,11 +83,11 @@ namespace EasySelectionChatbot
 		
 		private string _category;
 		
-		private string _portablity_true;
+		private string _portablity_1;
 		
-		private string _feature_true;
+		private string _feature_1;
 		
-		private string _size_true;
+		private string _size_1;
 		
 		private string _feature_2;
 		
@@ -183,50 +183,50 @@ namespace EasySelectionChatbot
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_portablity_true", DbType="NVarChar(255)")]
-		public string portablity_true
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_portablity_1", DbType="NVarChar(255)")]
+		public string portablity_1
 		{
 			get
 			{
-				return this._portablity_true;
+				return this._portablity_1;
 			}
 			set
 			{
-				if ((this._portablity_true != value))
+				if ((this._portablity_1 != value))
 				{
-					this._portablity_true = value;
+					this._portablity_1 = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_feature_true", DbType="NVarChar(255)")]
-		public string feature_true
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_feature_1", DbType="NVarChar(255)")]
+		public string feature_1
 		{
 			get
 			{
-				return this._feature_true;
+				return this._feature_1;
 			}
 			set
 			{
-				if ((this._feature_true != value))
+				if ((this._feature_1 != value))
 				{
-					this._feature_true = value;
+					this._feature_1 = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_size_true", DbType="NVarChar(255)")]
-		public string size_true
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_size_1", DbType="NVarChar(255)")]
+		public string size_1
 		{
 			get
 			{
-				return this._size_true;
+				return this._size_1;
 			}
 			set
 			{
-				if ((this._size_true != value))
+				if ((this._size_1 != value))
 				{
-					this._size_true = value;
+					this._size_1 = value;
 				}
 			}
 		}
