@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ChatbotDB" Class="ChatBotDataModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=YY150607;Initial Catalog=ChatbotDB;Integrated Security=True" SettingsObjectName="ChatBotModelLib.Properties.Settings" SettingsPropertyName="ChatbotDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ChatbotTable$" Member="ChatbotTable_s">
+    <Type Name="ChatbotTable_">
+      <Column Name="monitors_no" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="measurment" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="touchscreen" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="category" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="portablity_true" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="feature_true" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="size_true" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="feature_2" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="feature_3" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="portablity_2" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="[ante/intrapartum]" Member="ante_intrapartum" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="display_mode" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="weights" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="feature_4" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="invasive_bp" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="co2_measurment" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="nbp_measurment" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="speed" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="storage_size" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="monitors_name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

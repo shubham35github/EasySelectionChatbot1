@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C0F3BD6B-7F53-4435-A7D1-395818C1FAED}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ChatBotApp</RootNamespace>
+    <AssemblyName>ChatBotApp</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Abstractions.5.11.1\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Configuration, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Configuration.5.11.1\lib\net47\Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Container.5.11.1\lib\net47\Unity.Container.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChatBotModelLib\ChatBotModelLib.csproj">
+      <Project>{74fd61c2-9f16-449d-8640-d8b0cf334e61}</Project>
+      <Name>ChatBotModelLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChatBotProcessorLib\ChatBotProcessorLib.csproj">
+      <Project>{5b9dcf05-b466-4f3e-b51d-320a5da154c0}</Project>
+      <Name>ChatBotProcessorLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConsoleInputReaderLib\ConsoleInputReaderLib.csproj">
+      <Project>{9cfd0378-4b25-48bf-af51-cbf15991b5d0}</Project>
+      <Name>ConsoleInputReaderLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConsoleLoggerLib\ConsoleLoggerLib.csproj">
+      <Project>{f77137cd-bc95-49e5-9c30-7499a1c62aa8}</Project>
+      <Name>ConsoleLoggerLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessLayerContractLib\DataAccessLayerContractLib.csproj">
+      <Project>{edd03270-8872-4878-a128-5bb2c8b0f2e4}</Project>
+      <Name>DataAccessLayerContractLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DbDataAccessLayerLib\DbDataAccessLayerLib.csproj">
+      <Project>{a731bddf-d904-41c5-8613-0910cfb8512b}</Project>
+      <Name>DbDataAccessLayerLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EasySelectionChatbotUnitTest\EasySelectionChatbotUnitTest.csproj">
+      <Project>{2f3d2bba-3678-47f7-8dff-39852eb38c35}</Project>
+      <Name>EasySelectionChatbotUnitTest</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EasySelectionChatbot\EasySelectionChatbot.csproj">
+      <Project>{7776d170-614c-44cd-97bb-02d2e5a4b5e0}</Project>
+      <Name>EasySelectionChatbot</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InputReaderContractsLib\InputReaderContractsLib.csproj">
+      <Project>{3ae1e986-0136-47fc-ab45-8a9e7e401bea}</Project>
+      <Name>InputReaderContractsLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InputValidatorContractLib\InputValidatorContractLib.csproj">
+      <Project>{a2f8695b-19a2-4043-b423-c190784b5b2c}</Project>
+      <Name>InputValidatorContractLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InputValidatorLib\InputValidatorLib.csproj">
+      <Project>{53f886cf-1311-4281-a8cb-4d39b3629114}</Project>
+      <Name>InputValidatorLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoggerContractsLib\LoggerContractsLib.csproj">
+      <Project>{140a391b-84af-48ee-89d4-8d261688d389}</Project>
+      <Name>LoggerContractsLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SelectedItemsContractLib\SelectedItemsContractLib.csproj">
+      <Project>{25308d88-57eb-4675-b137-93f6e8a57464}</Project>
+      <Name>SelectedItemsContractLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SelectMonitorsLib\SelectMonitorsLib.csproj">
+      <Project>{a807165e-de20-4b7b-8a64-7e6964e43533}</Project>
+      <Name>SelectMonitorsLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
